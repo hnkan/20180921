@@ -42,13 +42,17 @@ public class execute {
 		}
 	}
 
-	public static void main(String[] args) throws IOException, JSONException {
-		String title = (String)readJsonFromUrl(SHEET_URL + "?key=" + API_KEY + "&fields=properties.title").getJSONObject("properties").get("title");
-		JSONObject json = readJsonFromUrl(SHEET_URL +RANGE +"?key=" + API_KEY);
-		JSONArray jsonArray = json.getJSONArray("values");
-		System.out.println(title);
-		for(Object obj : jsonArray) {
-			System.out.println(obj.toString());
+	public static void main(String[] args) {
+		try {
+			String title = (String)readJsonFromUrl(SHEET_URL + "?key=" + API_KEY + "&fields=properties.title").getJSONObject("properties").get("title");
+			JSONObject json = readJsonFromUrl(SHEET_URL +RANGE +"?key=" + API_KEY);
+			JSONArray jsonArray = json.getJSONArray("values");
+			System.out.println(title);
+			for(Object obj : jsonArray) {
+				System.out.println(obj.toString());
+			}			
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 		
 	}
